@@ -12,6 +12,13 @@ function init(){
 	
 	toolTimeline.from('.title', duration, {opacity: 0, scale: 25, ease: Linear.easeInOut}, .2);
 	// Instead of delay an additional argument can be passed as time delay
-	/*toolTimeline.to('#crazy', duration, {y: -100, ease: Elastic.easeInOut});
-	toolTimeline.to('#leaf', duration, {y: -100, ease: Back.easeInOut});*/
+	toolTimeline.to('.superman img', duration, {left: 0, ease: Back.easeInOut});
+
+	toolTimeline.from('.superman img', duration, {skewX: "20deg", ease: Back.easeInOut}, .9);
+
+	toolTimeline.to('.mainTitle', duration, {right: -50, ease: Back.easeInOut}, .7);
+
+	// An array
+	toolTimeline.staggerTo('.tool', duration, {top: 150, ease: Back.easeInOut}, .2, .7);
+	// it will take .7s of whole animation but .2s between each animation
 }
