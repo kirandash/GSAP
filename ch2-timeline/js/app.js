@@ -6,11 +6,12 @@ $(document).ready(function(){
 function init(){
 	// New instance of TimelineLite
 	var toolTimeline = new TimelineMax();
-	// paused: true in the timeline constructor makes sure that the timeline is paused in the beginning
 	var duration = .5;
 	// Add tween sequence to the timeline
-	toolTimeline.to('#toolBox', duration, {y: -100, ease: Linear.easeInOut});
-	toolTimeline.to('#weightLifter', duration, {y: -100, ease: Bounce.easeInOut});
-	toolTimeline.to('#crazy', duration, {y: -100, ease: Elastic.easeInOut});
-	toolTimeline.to('#leaf', duration, {y: -100, ease: Back.easeInOut});
+	toolTimeline.from('.mainTitle', duration, {opacity: 0, scale: 25, ease: Linear.easeInOut});
+	
+	toolTimeline.from('.title', duration, {opacity: 0, scale: 25, ease: Linear.easeInOut}, .2);
+	// Instead of delay an additional argument can be passed as time delay
+	/*toolTimeline.to('#crazy', duration, {y: -100, ease: Elastic.easeInOut});
+	toolTimeline.to('#leaf', duration, {y: -100, ease: Back.easeInOut});*/
 }
