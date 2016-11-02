@@ -1,5 +1,10 @@
+// Set Properties
+TweenMax.set(".image", {scale: 0, opacity: 0});
+TweenMax.set(".title", {perspective: 400, textShadow: "2px 2px 15px rgba(0,0,0,.6)"});
+// TweenMax.set(".instruction", {textShadow: "2px 2px 15px rgba(0,0,0,.6)"});
+
 var titleText = new SplitText(".title"),
-	tl = new TimelineLite(),
+	tl = new TimelineLite({onComplete: loadGameBoard}),
 	numWords = titleText.chars.length,
 	gameContainer = $(".gameBoard"),
 	dropTargets = $(".target"), // array of targets
@@ -16,6 +21,15 @@ function initTitle(){
 			ease: Back.easeOut
 		}, Math.random());
 	}
+}
+
+function loadGameBoard() {
+	TweenMax.staggerTo(".image", 0.2, {opacity: 1, scale: 1, ease: Back.easeOut, force3D: true}, 0.1, initDraggableItem)
+	// 0.2s - duration between two stagger and 0.1s for individual stagger
+}
+
+function initDraggableItem() {
+	
 }
 
 initTitle();
