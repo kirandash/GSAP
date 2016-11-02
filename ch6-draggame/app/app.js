@@ -41,8 +41,32 @@ function initDraggableItem() {
 			this.offsetLeft = this.startX - $(this.target).position().left;
 		},
 		onDragEnd: function(){
-			TweenMax.to(this.target, .5, {x: this.startX, y: this.startY})
-			// at the end of drag return back to starting position
+			var dragThing = this; // To avoid conflict between jquery this and drag instance this
+			var dragID = this.target.id + "Drop";
+
+			// Loop through each targets and check if drag matches anything
+			$.each(dropTargets, function(idx, spot){
+				// idx - index, spot: drop target
+				var spotID = spot.id;
+				// get position of spot
+				var pos = $(spot).position();
+				// top difference - where the dragthing top is and where the spot top is
+				var diffTop = dragThing.offsetTop + pos.top;
+				var diffLeft = dragThing.offsetLeft + pos.left;
+
+				if(spotID == dragID){
+
+					// hit test
+					if(dragThing.hitTest(spot, "10%")) {
+						// if our through hits the 10% of spot
+						TweenMax.to(dragThing.target, .5, {x: diffLeft, y: diffTop});
+					}else{
+						TweenMax.to(dragThing.target, .5, {x: dragThing.startX, y: dragThing.startY});
+						// at the end of drag return back to starting position
+					}
+				}
+			});
+			
 		}
 	})
 }
