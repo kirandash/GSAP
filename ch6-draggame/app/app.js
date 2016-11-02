@@ -33,10 +33,16 @@ function initDraggableItem() {
 		bounds: gameContainer,
 		edgeResistance: .65,
 		onPress: function(){
-			console.log("Pressed");
+			// take current x and y value and store them in current dragging instance
+			this.startX = this.x;
+			this.startY = this.y;
+			this.offsetTop = this.startY - $(this.target).position().top;
+			// $(this.target).position().top - position within it's parent this.startY - current position / dragging instance
+			this.offsetLeft = this.startX - $(this.target).position().left;
 		},
 		onDragEnd: function(){
-			console.log("drag end");
+			TweenMax.to(this.target, .5, {x: this.startX, y: this.startY})
+			// at the end of drag return back to starting position
 		}
 	})
 }
