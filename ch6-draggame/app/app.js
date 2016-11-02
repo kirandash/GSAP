@@ -29,7 +29,16 @@ function loadGameBoard() {
 }
 
 function initDraggableItem() {
-	
+	Draggable.create(".dragItem", {
+		bounds: gameContainer,
+		edgeResistance: .65,
+		onPress: function(){
+			console.log("Pressed");
+		},
+		onDragEnd: function(){
+			console.log("drag end");
+		}
+	})
 }
 
 initTitle();
